@@ -43,8 +43,8 @@ public class BtnTraducir : MonoBehaviour
         Traductor.Traducir();
     }
 
-    public void LimpiarTextoTraductor()
+    public void LimpiarTextoTraductor(Text textoBorrar)
     {
-        Texto.text = "";
+
     }
 }

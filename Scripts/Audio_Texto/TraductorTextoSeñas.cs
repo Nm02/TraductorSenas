@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TraductorTextoSeñas : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class TraductorTextoSeñas : MonoBehaviour
     [SerializeField] Animator anim;
 
     [SerializeField] Animador[] Clips;
+
+    [SerializeField] Text TextoNoIdentificados;
 
 
     public string textoTraducir;
@@ -27,6 +30,7 @@ public class TraductorTextoSeñas : MonoBehaviour
     public void Traducir()
     {
         string[] ListaComandos = textoTraducir.Split(new char[] { ' ' });
+        IdentificarNoReconocidas(ListaComandos);
         StartCoroutine(SiguienteSeña(ListaComandos));
     }
 
@@ -54,6 +58,27 @@ public class TraductorTextoSeñas : MonoBehaviour
         //anim.SetInteger("Seña", 0);
         //anim.SetTrigger("Cambio");
         anim.Play("Idle", -1, 0);
+    }
+
+    void IdentificarNoReconocidas(string[] Señas)
+    {
+        bool bandera;
+        for (int i = 0; i < Señas.Length; i++)
+        {
+            bandera = true;
+            for (int j = 0; j < Clips.Length; j++)
+            {
+                if (Señas[i].ToLower().Equals(Clips[j].key.ToLower()))
+                {
+                    bandera = false;
+                    break;
+                }
+            }
+            if (bandera)
+            {
+                TextoNoIdentificados.text += " " + Señas[i].ToLower();
+            }
+        }
     }
 
 }
