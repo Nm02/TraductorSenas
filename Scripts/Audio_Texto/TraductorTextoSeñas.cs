@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class TraductorTextoSeñas : MonoBehaviour
 {
     [Header ("Elementos Requeridos")]
-    [SerializeField] Animator anim;
+
+    public GameObject[] Avatares;
+    
+    Animator anim;
 
     [SerializeField] Animador[] Clips;
 
@@ -18,7 +21,10 @@ public class TraductorTextoSeñas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject clon = Instantiate(Avatares[PlayerPrefs.GetInt("SelectedAvatar", 0)], transform);
+        anim = clon.GetComponent<Animator>();
         
+
     }
 
     // Update is called once per frame
