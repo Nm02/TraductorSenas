@@ -119,6 +119,7 @@ public class Keyboard : MonoBehaviour
             for (int j = 0; j < lines[i].keys.Length; j++)
             {
                 bool isBackSpace = lines[i].keys[j] == '.';
+                bool isSpace = lines[i].keys[j] == ' ';
 
                 float keyX = startX + j * (keyWidth + xSpacing);
 
@@ -136,6 +137,10 @@ public class Keyboard : MonoBehaviour
                 if (isBackSpace)
                 {
                     thisKeyWidth *= 2; 
+                }
+                else if (isSpace)
+                {
+                    thisKeyWidth *= 7;
                 }
 
                 keyRectTransform.sizeDelta = new Vector2(thisKeyWidth, keyWidth);

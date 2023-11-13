@@ -45,6 +45,6 @@ public class BtnTraducir : MonoBehaviour
 
     public void LimpiarTextoTraductor(Text textoBorrar)
     {
-
+        textoBorrar.text = "";
     }
 }
